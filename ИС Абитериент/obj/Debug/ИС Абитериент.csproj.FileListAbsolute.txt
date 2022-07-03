@@ -1,0 +1,10 @@
+C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\bin\Debug\ИС Абитериент.exe.config
+C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\bin\Debug\ИС Абитериент.exe
+C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\bin\Debug\ИС Абитериент.pdb
+C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\obj\Debug\ИС Абитериент.csproj.AssemblyReference.cache
+C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\obj\Debug\ИС_Абитериент.Form1.resources
+C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\obj\Debug\ИС_Абитериент.Properties.Resources.resources
+C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\obj\Debug\ИС Абитериент.csproj.GenerateResource.cache
+C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\obj\Debug\ИС Абитериент.csproj.CoreCompileInputs.cache
+C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\obj\Debug\ИС Абитериент.exe
+C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\obj\Debug\ИС Абитериент.pdb
