@@ -8,3 +8,4 @@ C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\obj
 C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\obj\Debug\ИС Абитериент.csproj.CoreCompileInputs.cache
 C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\obj\Debug\ИС Абитериент.exe
 C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\obj\Debug\ИС Абитериент.pdb
+C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\obj\Debug\ИС_Абитериент.Form2.resources

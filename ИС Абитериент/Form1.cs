@@ -23,7 +23,6 @@ namespace ИС_Абитериент
         {
             toolStripComboBox1.Items.Add("Очное отделение");
             toolStripComboBox1.Items.Add("Заочное отделение");
-            DataTable table = new DataTable();
             table.Columns.Add("№", typeof(string));
             table.Columns.Add("Специальность", typeof(string));
             table.Columns.Add("Номер телефона", typeof(string));
@@ -47,22 +46,17 @@ namespace ИС_Абитериент
                 }
                 st.Close();
             }
+            Form2.k = k;
             dataGridView1.DataSource = table;
             dataGridView1.Columns[1].Width = 308;
         }
-
+       public static DataTable table = new DataTable();
         private void toolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (toolStripComboBox1.SelectedItem != null)
             {
+                table.Rows.Clear();
                 path = toolStripComboBox1.SelectedItem.ToString()+".txt";
-                DataTable table = new DataTable();
-                table.Columns.Add("№", typeof(string));
-                table.Columns.Add("Специальность", typeof(string));
-                table.Columns.Add("Номер телефона", typeof(string));
-                table.Columns.Add("Фамилия", typeof(string));
-                table.Columns.Add("Имя", typeof(string));
-                table.Columns.Add("Отчетсво", typeof(string));
                 string Text = "g";int k = 0;
                 using (StreamReader st = new StreamReader(path))
                 {
@@ -80,8 +74,40 @@ namespace ИС_Абитериент
                     }
                     st.Close();
                 }
+                Form2.k = k;
                 dataGridView1.DataSource = table;
                 dataGridView1.Columns[1].Width = 308;
+            }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Form2 f2 = new Form2();
+            f2.ShowDialog();
+
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            string h = Convert.ToString(dataGridView1[2,dataGridView1.CurrentRow.Index].Value);
+            dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
+            table.Rows.Clear();
+            IEnumerable<Abiturient> t = from d in ab
+                                        where d.number != h
+                                        select d;
+            int k1=0;
+            foreach (var d in t)
+            {
+                k1+=1;
+                table.Rows.Add(k1,d.Spec,d.Familia,d.Name,d.Otchestvo);
+            }
+            dataGridView1.DataSource = table;
+            using (StreamWriter wer = new StreamWriter(path,false))
+            {
+                foreach (var d in t)
+                {
+                    wer.WriteLine(d.Spec+'|'+d.number + '|' +d.Familia + '|' +d.Name + '|' +d.Otchestvo);
+                }
             }
         }
     }
