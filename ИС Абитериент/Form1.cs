@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace ИС_Абитериент
 {
@@ -55,28 +56,59 @@ namespace ИС_Абитериент
         {
             if (toolStripComboBox1.SelectedItem != null)
             {
+                ab.Clear();
                 table.Rows.Clear();
-                path = toolStripComboBox1.SelectedItem.ToString()+".txt";
-                string Text = "g";int k = 0;
-                using (StreamReader st = new StreamReader(path))
+                switch (toolStripComboBox1.SelectedItem.ToString())
                 {
-                    while (Text != null)
-                    {
-                        Text = st.ReadLine();
-                        if (Text != null)
+                    case "Очное отделение":
                         {
-                            string[] t = Text.Split('|');
-                            ab.Add(new Abiturient(t[0], t[1], t[2], t[3], t[4]));
-                            k += 1;
-                            table.Rows.Add(k,t[0], t[1], t[2], t[3], t[4]);
-                            Array.Clear(t, 0, t.Length);
-                        }
-                    }
-                    st.Close();
+                            path = toolStripComboBox1.SelectedItem.ToString() + ".txt";
+                            string Text = "g"; int k = 0;
+                            using (StreamReader st = new StreamReader(path))
+                            {
+                                while (Text != null)
+                                {
+                                    Text = st.ReadLine();
+                                    if (Text != null)
+                                    {
+                                        string[] t = Text.Split('|');
+                                        ab.Add(new Abiturient(t[0], t[1], t[2], t[3], t[4]));
+                                        k += 1;
+                                        table.Rows.Add(k, t[0], t[1], t[2], t[3], t[4]);
+                                        Array.Clear(t, 0, t.Length);
+                                    }
+                                }
+                                st.Close();
+                            }
+                            Form2.k = k;
+                            dataGridView1.DataSource = table;
+                            dataGridView1.Columns[1].Width = 308;
+                        }; break;
+                    default:
+                        {
+                            path = toolStripComboBox1.SelectedItem.ToString() + ".txt";
+                            string Text = "g"; int k = 0;
+                            using (StreamReader st = new StreamReader(path))
+                            {
+                                while (Text != null)
+                                {
+                                    Text = st.ReadLine();
+                                    if (Text != null)
+                                    {
+                                        string[] t = Text.Split('|');
+                                        ab.Add(new Abiturient(t[0], t[1], t[2], t[3], t[4]));
+                                        k += 1;
+                                        table.Rows.Add(k, t[0], t[1], t[2], t[3], t[4]);
+                                        Array.Clear(t, 0, t.Length);
+                                    }
+                                }
+                                st.Close();
+                            }
+                            Form2.k = k;
+                            dataGridView1.DataSource = table;
+                            dataGridView1.Columns[1].Width = 308;
+                        };break;
                 }
-                Form2.k = k;
-                dataGridView1.DataSource = table;
-                dataGridView1.Columns[1].Width = 308;
             }
         }
 
@@ -101,6 +133,7 @@ namespace ИС_Абитериент
                 k1+=1;
                 table.Rows.Add(k1,d.Spec,d.Familia,d.Name,d.Otchestvo);
             }
+            Form2.k = k1;
             dataGridView1.DataSource = table;
             using (StreamWriter wer = new StreamWriter(path,false))
             {
@@ -108,6 +141,23 @@ namespace ИС_Абитериент
                 {
                     wer.WriteLine(d.Spec+'|'+d.number + '|' +d.Familia + '|' +d.Name + '|' +d.Otchestvo);
                 }
+            }
+            
+        }
+
+
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("ddd");
+        }
+
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            using (StreamWriter st = new StreamWriter(path,false))
+            {
+                for (int i=0;i<table.Rows.Count;i++)
+                st.WriteLine(table.Rows[i].ToString());
             }
         }
     }
