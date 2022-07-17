@@ -40,6 +40,12 @@ namespace ИС_Абитериент
             {
                 st.WriteLine(Convert.ToString(comboBox1.SelectedItem)+'|'+textBox1.Text + '|' + textBox2.Text + '|' + textBox3.Text + '|' + textBox4.Text);
             }
+            Form1.f2.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form1.f2.Hide();
         }
     }
 }
