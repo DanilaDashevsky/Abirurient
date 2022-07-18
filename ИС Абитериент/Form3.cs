@@ -31,6 +31,7 @@ namespace ИС_Абитериент
             this.Font = Properties.Settings.Default.Font;
             this.BackColor = Properties.Settings.Default.ColorForm;
                 pictureBox1.Image = Image.FromFile(Properties.Settings.Default.Image1);
+            openFileDialog1.Filter = "Text files(*.txt)";
         }
 
 
@@ -159,6 +160,20 @@ namespace ИС_Абитериент
                     Properties.Settings.Default.Image1 = "флаг россии.jpg";
                     Properties.Settings.Default.Save();
                 }
+            }
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                comboBox1.Items.Add(openFileDialog1.FileName);
+
             }
         }
     }

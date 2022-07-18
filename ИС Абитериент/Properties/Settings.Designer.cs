@@ -138,5 +138,17 @@ namespace ИС_Абитериент.Properties {
                 this["Image1"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string File1 {
+            get {
+                return ((string)(this["File1"]));
+            }
+            set {
+                this["File1"] = value;
+            }
+        }
     }
 }
