@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -11,6 +12,7 @@ using System.IO;
 using System.Diagnostics;
 using Microsoft.VisualBasic;
 using System.Globalization;
+using MySql.Data.MySqlClient;
 
 namespace ИС_Абитериент
 {
@@ -20,104 +22,52 @@ namespace ИС_Абитериент
         {
             InitializeComponent();
         }
-        public static List<Abiturient> ab = new List<Abiturient>();
-        public static string path = "Очное отделение.txt";
+        public MySqlCommand mycom;
+        public static string connect = "Server=localhost;port=3306;user=root;password=root;database=danilka";
+        public static MySqlConnection mycon = new MySqlConnection(connect);
+        public static MySqlDataAdapter mdb;
+        public DataSet cd;
+        public static DataTable table = new DataTable();
+        public static string path = "Очное отделение";
         private void Form1_Load(object sender, EventArgs e)
         {
+
             toolStripComboBox2.Items.Add("Специальность");
-            toolStripComboBox2.Items.Add("Номер телефона");
             toolStripComboBox2.Items.Add("Фамилия");
             toolStripComboBox2.Items.Add("Имя");
-            toolStripComboBox2.Items.Add("Отчество");
-            toolStripComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             toolStripComboBox1.Items.Add("Очное отделение");
             toolStripComboBox1.Items.Add("Заочное отделение");
-            table.Columns.Add("№", typeof(string));
-            table.Columns.Add("Специальность", typeof(string));
-            table.Columns.Add("Номер телефона", typeof(string));
-            table.Columns.Add("Фамилия", typeof(string));
-            table.Columns.Add("Имя", typeof(string));
-            table.Columns.Add("Отчетсво", typeof(string));
-            string Text = "g";int k = 0;
-            using (StreamReader st = new StreamReader(path))
-            {
-                while (Text != null)
-                {
-                    Text = st.ReadLine();
-                    if (Text != null)
-                    {
-                        string[] t = Text.Split('|');
-                        ab.Add(new Abiturient(t[0], t[1], t[2], t[3], t[4]));
-                        k += 1;
-                        table.Rows.Add(k,t[0], t[1], t[2], t[3], t[4]);
-                        Array.Clear(t, 0, t.Length);
-                    }
-                }
-                st.Close();
-            }
-            Form2.k = k;
+            mycon.Open();
+            mdb = new MySqlDataAdapter("SELECT * FROM och", connect);
+            mdb.Fill(table);
             dataGridView1.DataSource = table;
+         }
            /* DataGridViewImageColumn im = new DataGridViewImageColumn();
             im.HeaderText = "Photo";
             im.Image = Image.FromFile("аттестат.png");
             dataGridView1.Columns.Add(im);*/
-        }
-       public static DataTable table = new DataTable();
+        
         private void toolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (toolStripComboBox1.SelectedItem != null)
             {
-                ab.Clear();
                 table.Rows.Clear();
+                table.Columns.Clear();
                 switch (toolStripComboBox1.SelectedItem.ToString())
                 {
                     case "Очное отделение":
                         {
-                            path = toolStripComboBox1.SelectedItem.ToString() + ".txt";
-                            string Text = "g"; int k = 0;
-                            using (StreamReader st = new StreamReader(path))
-                            {
-                                while (Text != null)
-                                {
-                                    Text = st.ReadLine();
-                                    if (Text != null)
-                                    {
-                                        string[] t = Text.Split('|');
-                                        ab.Add(new Abiturient(t[0], t[1], t[2], t[3], t[4]));
-                                        k += 1;
-                                        table.Rows.Add(k, t[0], t[1], t[2], t[3], t[4]);
-                                        Array.Clear(t, 0, t.Length);
-                                    }
-                                }
-                                st.Close();
-                            }
-                            Form2.k = k;
+                            path = "Очное отделение";
+                             mdb = new MySqlDataAdapter("SELECT * FROM och", connect);
+                            mdb.Fill(table);
                             dataGridView1.DataSource = table;
-                            dataGridView1.Columns[1].Width = 308;
                         }; break;
                     default:
                         {
-                            path = toolStripComboBox1.SelectedItem.ToString() + ".txt";
-                            string Text = "g"; int k = 0;
-                            using (StreamReader st = new StreamReader(path))
-                            {
-                                while (Text != null)
-                                {
-                                    Text = st.ReadLine();
-                                    if (Text != null)
-                                    {
-                                        string[] t = Text.Split('|');
-                                        ab.Add(new Abiturient(t[0], t[1], t[2], t[3], t[4]));
-                                        k += 1;
-                                        table.Rows.Add(k, t[0], t[1], t[2], t[3], t[4]);
-                                        Array.Clear(t, 0, t.Length);
-                                    }
-                                }
-                                st.Close();
-                            }
-                            Form2.k = k;
+                            path = "Зочное отделение";
+                            mdb = new MySqlDataAdapter("SELECT * FROM zaoch", connect);
+                            mdb.Fill(table);
                             dataGridView1.DataSource = table;
-                            dataGridView1.Columns[1].Width = 308;
                         };break;
                 }
             }
@@ -130,43 +80,48 @@ namespace ИС_Абитериент
         public static Form1 f1 = new Form1();
         public static Form2 f2 = new Form2();
         public static Form3 f3 = new Form3();
+        public static Form4 f4 = new Form4();
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            string h = Convert.ToString(dataGridView1[2,dataGridView1.CurrentRow.Index].Value);
-            dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
-            table.Rows.Clear();
-            IEnumerable<Abiturient> t = from d in ab
-                                        where d.number != h
-                                        select d;
-            int k1=0;
-            foreach (var d in t)
-            {
-                k1+=1;
-                table.Rows.Add(k1,d.Spec,d.number,d.Familia,d.Name,d.Otchestvo);
+            string h = Convert.ToString(dataGridView1[0, dataGridView1.CurrentRow.Index].Value);
+            if (path == "Очное отделение")
+            { 
+                dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
+                mycom = new MySqlCommand("DELETE FROM `och` where `och`.№=" + h+"", mycon); ;
+                mycom.ExecuteNonQuery();
+                
             }
-            Form2.k = k1;
-            dataGridView1.DataSource = table;
-            using (StreamWriter wer = new StreamWriter(path,false))
+            else
             {
-                foreach (var d in t)
-                {
-                    wer.WriteLine(d.Spec+'|'+d.number + '|' +d.Familia + '|' +d.Name + '|' +d.Otchestvo);
-                }
+                dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
+                mycom = new MySqlCommand("DELETE FROM `zaoch` where `och`.№=" + h + "", mycon); ;
+                mycom.ExecuteNonQuery();
             }
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ab.Clear();
-            using (StreamWriter st = new StreamWriter(path,false))
+            if (path == "Очное отделение")
             {
+                mycom = new MySqlCommand("DELETE from `och`", mycon);
+                mycom.ExecuteNonQuery();
                 for (int i=0;i<dataGridView1.RowCount;i++)
                 {
-                    st.WriteLine(dataGridView1[1,i].Value.ToString()+'|'+ dataGridView1[2, i].Value.ToString() + '|' + dataGridView1[3, i].Value.ToString() + '|' + dataGridView1[4, i].Value.ToString() + '|' + dataGridView1[4, i].Value.ToString());
-                    ab.Add(new Abiturient(dataGridView1[1, i].Value.ToString(), dataGridView1[2, i].Value.ToString(), dataGridView1[3, i].Value.ToString(), dataGridView1[4, i].Value.ToString(), dataGridView1[5, i].Value.ToString()));
+                    mycom = new MySqlCommand("INSERT INTO `och` (`№`, `Специальность`, `Фамилия`, `Имя`, `Отчество`, `Дата рождения`, `Номер телефона`, `Адрес`, `Законченное уч.учреждение`, `Дата окончания`, `Ср.балл`, `Ин.язык`, `Документы`) VALUES ('"+dataGridView1[0,i].Value.ToString()+ "', '" + dataGridView1[1, i].Value.ToString() + "', '" + dataGridView1[2, i].Value.ToString() + "', '" + dataGridView1[3, i].Value.ToString() + "','" + dataGridView1[4, i].Value.ToString() + "','" + dataGridView1[5, i].Value.ToString() + "','" + dataGridView1[6, i].Value.ToString() + "','" + dataGridView1[7, i].Value.ToString() + "','" + dataGridView1[8, i].Value.ToString() + "','" + dataGridView1[9, i].Value.ToString() + "','" + dataGridView1[10, i].Value.ToString() + "','" + dataGridView1[11, i].Value.ToString() + "','" + dataGridView1[12, i].Value.ToString() + "')", mycon);
+                    mycom.ExecuteNonQuery();
                 }
             }
+            else
+            {
+                mycom = new MySqlCommand("DELETE from `zaoch`", mycon);
+                mycom.ExecuteNonQuery();
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    mycom= new MySqlCommand("INSERT INTO `zaoch` (`№`, `Специальность`, `Фамилия`, `Имя`, `Отчество`, `Дата рождения`, `Адрес`, `Номер телефона`, `Эл.почта`, `Законченное уч.учреждение`, `Дата окончания`, `Ин.язык`, `Документы`) VALUES (NULL, '" + dataGridView1[1, i].Value.ToString() + "', '" + dataGridView1[2, i].Value.ToString() + "', '" + dataGridView1[3, i].Value.ToString() + "','" + dataGridView1[4, i].Value.ToString() + "','" + dataGridView1[5, i].Value.ToString() + "','" + dataGridView1[6, i].Value.ToString() + "','" + dataGridView1[7, i].Value.ToString() + "','" + dataGridView1[8, i].Value.ToString() + "','" + dataGridView1[9, i].Value.ToString() + "','" + dataGridView1[10, i].Value.ToString() + "','" + dataGridView1[11, i].Value.ToString() + "','" + dataGridView1[12, i].Value.ToString() + "')", mycon);
+                    mycom.ExecuteNonQuery();
+                }
+            }
+            
         }
 
         private void toolStripComboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -174,100 +129,115 @@ namespace ИС_Абитериент
             
             if (toolStripComboBox2.SelectedItem.ToString() !="")
             {
-                Poisk r;
-                Abiturient g=new Abiturient(null, null, null, null, null);
-                switch (toolStripComboBox2.SelectedItem.ToString())
+                if (path == "Заочное отделение.txt")
                 {
-                    case "Имя": { g.name(); } break;
-                    case "Фамилия": { g.familia(); } break;
-                    case "Специальность": { r.Spec(); } break;
+                    //Zaoch g1 = new 
+                    //Abiturient g = new Abiturient(null, null, null, null, null, null, null, null, null, null, null, null);
+                    switch (toolStripComboBox2.SelectedItem.ToString())
+                    {
+                        case "Ин.язык": { Zaoch.Language1(); } break;
+                        case "Фамилия": { Zaoch.Familia1(); } break;
+                        case "Специальность": { Zaoch.Spec1(); } break;
+                    }
                 }
+                else
+                {
+                    switch (toolStripComboBox2.SelectedItem.ToString())
+                    {
+                       case "Имя": { Abiturient.name(); } break;
+                       case "Фамилия": { Abiturient.familia(); } break;
+                        case "Специальность": { Abiturient.spec(); } break;
+                    }
+                }
+
             }
         }
         public static TextInfo ti = CultureInfo.CurrentCulture.TextInfo;
-
+        public static string specia;
         private void toolStripMenuItem5_Click(object sender, EventArgs e)
         {
             f3.Show();
         }
+
+        private void toolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотете выйти? Внесённые изменения могут не сохраниться!", "Выход", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+        public static  void Zapol()
+        {
+            f1.dataGridView1.DataSource = table;
+        }
     }
     public struct Poisk
     {
-        public void Spec()
-        {
-            string p = Interaction.InputBox("Введите специальность:");
-            p = Form1.ti.ToTitleCase(p);
-            IEnumerable<Abiturient> st = from h in Form1.ab
-                                         where h.Spec.Contains(p)
-                                         orderby h.Name
-                                         select h;
-            Form1.table.Rows.Clear();
-            int l = 0;
-            foreach (Abiturient h in st)
-            {
-                l += 1;
-                Form1.table.Rows.Add(l, h.Spec, h.number, h.Familia, h.Name, h.Otchestvo);
-            }
-            Form2.k = l;
-        }
+
     }
-    public interface IPoisk
-    {
-        /*
-        void Number();
-        void Otchestvo();*/
-       void name();
-       void familia();
-    }
-    public class Abiturient : IPoisk
+
+    public class Abiturient
     {
         public string Familia { get; set;}
         public string number;
         public string Name;
         public string Otchestvo;
         public string Spec;
-        public Abiturient(string Spec,string number, string Familia, string Name, string Otchestvo)
+        public string Adres;
+        public string Language;
+        public string Birthday;
+        public string School;
+        public string SrBall;
+        public string DataOcon;
+        public string Doky;
+        public bool Sdal;
+
+        public Abiturient(string Spec,string number, string Familia, string Name, string Otchestvo, string Birthday, string Adres, string School, string DataOcon, string Language, string SrBall, string Doky)
         {
+            this.Birthday = Birthday;
+            this.Doky = Doky;
+            this.Adres = Adres;
+            this.School = School;
+            this.DataOcon = DataOcon;
+            this.Language = Language;
             this.Spec = Spec;
+            this.SrBall = SrBall;
             this.number = number;
             this.Familia = Familia;
             this.Name = Name;
             this.Otchestvo = Otchestvo;
         }
-        public void name()
+        static public void name()
         {
+            
             string p = Interaction.InputBox("Введите имя абитуриента");
             p = Form1.ti.ToTitleCase(p);
-            IEnumerable<Abiturient> st = from h in Form1.ab
-                                         where h.Name.Contains(p)
-                                         orderby h.Name
-                                         select h;
             Form1.table.Rows.Clear();
-            int l=0;
-            foreach(Abiturient h in st)
-            {
-                l += 1;
-                Form1.table.Rows.Add(l,h.Spec,h.number,h.Familia,h.Name,h.Otchestvo);
-            }
-            Form2.k = l;
+            Form1.mdb = new MySqlDataAdapter($"SELECT * FROM `och` WHERE `Имя` LIKE '{p}%'", Form1.connect);
+            Form1.mdb.Fill(Form1.table);
+            Form1.Zapol();
+
         }
-        public void familia()
+        static public void familia()
         {
             string p = Interaction.InputBox("Введите фамилию абитуриента");
             p = Form1.ti.ToTitleCase(p);
-            IEnumerable<Abiturient> st = from h in Form1.ab
-                                         where h.Familia.Contains(p)
-                                         orderby h.Familia
-                                         select h;
-            
             Form1.table.Rows.Clear();
-            int l = 0;
-            foreach (Abiturient h in st)
+            Form1.mdb = new MySqlDataAdapter($"SELECT * FROM `och` WHERE `Фамилия` LIKE '{p}%'", Form1.connect);
+            MessageBox.Show($"SELECT * FROM `och` WHERE `Фамилия` LIKE '{p}%'");
+            Form1.mdb.Fill(Form1.table);
+            Form1.Zapol();
+        }
+        static public void spec()
+        {
+            Form1.f4.ShowDialog();
+            if (Form1.specia != null)
             {
-                l += 1;
-                Form1.table.Rows.Add(l, h.Spec, h.number, h.Familia, h.Name, h.Otchestvo);
+                Form1.table.Rows.Clear();
+                Form1.mdb = new MySqlDataAdapter($"SELECT * FROM `och` WHERE `Специальность`='{Form1.specia}'", Form1.connect);
+                Form1.mdb.Fill(Form1.table);
+                Form1.Zapol();
             }
-            Form2.k = l;
         }
     }
 }

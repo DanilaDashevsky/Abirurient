@@ -17,8 +17,6 @@ namespace ИС_Абитериент
         public Form3()
         {
             InitializeComponent();
-            System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Properties.Settings.Default.Language);
-            System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(Properties.Settings.Default.Language);
             Default1.BackColor = Properties.Settings.Default.ColorElements;
             exit.BackColor = Properties.Settings.Default.ColorElements;
             ColorForm1.BackColor = Properties.Settings.Default.ColorElements;
@@ -30,8 +28,8 @@ namespace ИС_Абитериент
             this.ForeColor = Properties.Settings.Default.ColorTetxt;
             this.Font = Properties.Settings.Default.Font;
             this.BackColor = Properties.Settings.Default.ColorForm;
-                pictureBox1.Image = Image.FromFile(Properties.Settings.Default.Image1);
-            openFileDialog1.Filter = "Text files(*.txt)";
+            /* pictureBox1.Image = Image.FromFile(Properties.Settings.Default.Image1);
+            openFileDialog1.Filter = "Text files(*.txt)";*/
         }
 
 
@@ -175,6 +173,11 @@ namespace ИС_Абитериент
                 comboBox1.Items.Add(openFileDialog1.FileName);
 
             }
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

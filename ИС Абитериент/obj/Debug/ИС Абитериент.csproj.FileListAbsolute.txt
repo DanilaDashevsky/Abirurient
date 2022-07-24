@@ -11,3 +11,44 @@ C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\obj
 C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\obj\Debug\ИС_Абитериент.Form2.resources
 C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\obj\Debug\ИС Абитериент.csproj.ResolveComReference.cache
 C:\Users\HP\source\repos\ИС Абитериент\ИС Абитериент\obj\Debug\ИС_Абитериент.Form3.resources
+C:\Users\student\Desktop\Папка проекта\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС Абитериент.csprojAssemblyReference.cache
+C:\Users\student\Desktop\Папка проекта\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС Абитериент.csproj.ResolveComReference.cache
+C:\Users\student\Desktop\Папка проекта\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС_Абитериент.Form1.resources
+C:\Users\student\Desktop\Папка проекта\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС_Абитериент.Form2.resources
+C:\Users\student\Desktop\Папка проекта\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС_Абитериент.Form3.resources
+C:\Users\student\Desktop\Папка проекта\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС_Абитериент.Properties.Resources.resources
+C:\Users\student\Desktop\Папка проекта\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС Абитериент.csproj.GenerateResource.cache
+C:\Users\student\Desktop\Папка проекта\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС Абитериент.csproj.CoreCompileInputs.cache
+C:\Users\student\Desktop\Папка проекта\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС Абитериент.exe
+C:\Users\student\Desktop\Папка проекта\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС Абитериент.pdb
+C:\Users\student\Desktop\Папка проекта\Abirurient\Abirurient\ИС Абитериент\bin\Debug\ИС Абитериент.exe.config
+C:\Users\student\Desktop\Папка проекта\Abirurient\Abirurient\ИС Абитериент\bin\Debug\ИС Абитериент.exe
+C:\Users\student\Desktop\Папка проекта\Abirurient\Abirurient\ИС Абитериент\bin\Debug\ИС Абитериент.pdb
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\bin\Debug\ИС Абитериент.exe.config
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\bin\Debug\ИС Абитериент.exe
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\bin\Debug\ИС Абитериент.pdb
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС Абитериент.csproj.AssemblyReference.cache
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС Абитериент.csproj.ResolveComReference.cache
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС_Абитериент.Form1.resources
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС_Абитериент.Form2.resources
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС_Абитериент.Form3.resources
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС_Абитериент.Properties.Resources.resources
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС Абитериент.csproj.GenerateResource.cache
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС Абитериент.csproj.CoreCompileInputs.cache
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС Абитериент.exe
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС Абитериент.pdb
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС Абитериент.exe.config
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\bin\Debug\MySql.Data.dll
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\bin\Debug\Google.Protobuf.dll
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\bin\Debug\ZstdNet.dll
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\bin\Debug\System.Memory.dll
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\bin\Debug\System.Buffers.dll
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\bin\Debug\MySql.Data.xml
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС Абитериент.csproj.CopyComplete
+C:\Users\HP\Downloads\Abirurient\Abirurient\ИС Абитериент\obj\Debug\ИС_Абитериент.Form4.resources
